@@ -6,21 +6,21 @@ const testimonials = [
     id: 1,
     name: "Daniel Smith",
     role: "Senior Engineer",
-    image: "/api/placeholder/400/400",
+    image: "https://gramentheme.com/html/xstar/assets/img/team/team3.png",
     quote: "Posuere luctus orci. Donec vitae mattis quam, vitae tempor arcu. Aenean non odio porttitor, convallis erat sit amet, facilisis velit. Nulla ornare convallis malesuada. Phasellus molestie, ipsum ac fringilla."
   },
   {
     id: 2,
     name: "Sarah Johnson",
     role: "Product Manager",
-    image: "/api/placeholder/400/400",
+    image: "https://gramentheme.com/html/xstar/assets/img/team/team3.png",
     quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
   },
   {
     id: 3,
     name: "Michael Brown",
     role: "Lead Designer",
-    image: "/api/placeholder/400/400",
+    image: "https://gramentheme.com/html/xstar/assets/img/team/team3.png",
     quote: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
   }
 ];
