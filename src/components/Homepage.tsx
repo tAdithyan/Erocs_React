@@ -37,7 +37,7 @@ const TypingAnimation: React.FC = () => {
 
   return (
     <motion.span
-      className="relative inline-block text-[3rem] sm:text-5xl md:text-6xl xl:text-8xl ms-3"
+      className="relative inline-block text-[3rem] sm:text-5xl md:text-6xl xl:text-7xl ms-3"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -95,10 +95,12 @@ const Header: React.FC = () => {
 
   const menuItems: string[] = [
     'HOME',
-    'PAGES',
-    'PORTFOLIO',
-    'BLOG',
+    'ABOUT',
+    // 'BLOG',
     'SERVICES',
+    'PORTFOLIO',
+    'TEAM',
+    'TESTIMONIALS',
     'CONTACT US'
   ];
 
@@ -114,18 +116,20 @@ const Header: React.FC = () => {
           </span>
 
           {/* Navigation Links for Larger Screens */}
-          <div className="hidden xl:flex items-center space-x-12 sm:space-x-4 mx-auto">
-            {menuItems.map((item) => (
-              <a 
-                key={item}
-                href="#" 
-                className="text-xl hover:text-[#9FE800] transition-colors flex items-center gap-1 group"
-              >
-                <GoArrowUpRight className="transition-transform duration-300 group-hover:rotate-40" />
-                {item}
-              </a>
-            ))}
-          </div>
+          <div className="hidden sm:flex xl:flex items-center space-x-6 xl:space-x-12 mx-auto">
+  {menuItems.map((item) => (
+    <a 
+      key={item}
+      href={`#${item.replace(/\s+/g, '-').toLowerCase()}`}
+      className="text-xl hover:text-[#9FE800] transition-colors flex items-center gap-1 group"
+      aria-label={`Navigate to ${item}`}
+    >
+      <GoArrowUpRight className="transition-transform duration-300 group-hover:rotate-40" />
+      {item}
+    </a>
+  ))}
+</div>
+
 
           {/* Get In Touch Button */}
           <button className="relative overflow-hidden border border-white xl:px-8 px-2 py-3 text-sm group hover:text-black transition-all hidden xl:flex">
@@ -210,7 +214,7 @@ const Header: React.FC = () => {
         <div className="max-w-5xl  ">
           <h1 className="text-[4rem] sm:text-5xl md:text-6xl xl:text-8xl font-bold mt-12  2xl:mt-42 ">
             <motion.div
-              className="hover:text-[#9FE800] transition-colors flex items-center gap-1 group text-[3rem] sm:text-5xl md:text-6xl xl:text-8xl font-bold tracking-tight"
+              className="hover:text-[#9FE800] transition-colors flex items-center gap-1 group text-[3rem] sm:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight"
               variants={menuItemVariants}
               initial="initial"
               animate="animate"
@@ -220,7 +224,7 @@ const Header: React.FC = () => {
               NEXT GENERATION
             </motion.div>
             
-            <span className="italic font-normal text-[3rem] sm:text-5xl md:text-6xl xl:text-8xl">
+            <span className="italic font-normal text-[3rem] sm:text-5xl md:text-6xl xl:text-7xl">
               CREATIVE
             </span>
 
