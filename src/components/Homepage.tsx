@@ -206,9 +206,9 @@ const Header: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <div className="px-4 sm:px-10  xl:ms-16">
-        <div className="max-w-5xl sm:mt-24 md:mt-36 lg:mt-40 ">
-          <h1 className="text-[4rem] sm:text-5xl md:text-6xl xl:text-8xl font-bold mt-32 ">
+      <div className="px-4 ">
+        <div className="max-w-5xl  ">
+          <h1 className="text-[4rem] sm:text-5xl md:text-6xl xl:text-8xl font-bold mt-12  2xl:mt-42 ">
             <motion.div
               className="hover:text-[#9FE800] transition-colors flex items-center gap-1 group text-[3rem] sm:text-5xl md:text-6xl xl:text-8xl font-bold tracking-tight"
               variants={menuItemVariants}
