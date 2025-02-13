@@ -8,6 +8,8 @@ import About from "./components/About";
 import ServicesSection from "./components/Service";
 import Portfolio from "./components/Portfolio";
 import TeamSection from "./components/Teamsection";
+import TestimonialCarousel from "./components/TestimonialCarousel";
+import ContactSection from "./components/ContactSection";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -17,6 +19,9 @@ const App: React.FC = () => {
       easing: "ease-in-out", // Easing function
     });
   }, []);
+
+
+  
 
   return (
     <>
@@ -55,8 +60,15 @@ const App: React.FC = () => {
       </div>
       <About />
       <ServicesSection />
+      
       <Portfolio />
+
       <TeamSection />
+
+      <TestimonialCarousel/>
+      <MovingBanner />
+
+      <ContactSection />
     </>
   );
 };
