@@ -1,20 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react';
-import aiimage from '../assets/download.png';
+import { useState, useEffect, useRef } from "react";
+import aiimage from "../assets/download.png";
 
-// Custom hook to replace react-intersection-observer
-const useInView = (options = {}) => {
+interface UseInViewOptions {
+  triggerOnce?: boolean;
+  threshold?: number;
+}
+
+const useInView = (options: UseInViewOptions = {}): [
+  React.RefObject<HTMLDivElement>,
+  boolean
+] => {
   const [inView, setInView] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setInView(entry.isIntersecting);
-      if (entry.isIntersecting && options.triggerOnce) {
-        observer.disconnect();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+        if (entry.isIntersecting && options.triggerOnce) {
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: options.threshold || 0,
       }
-    }, {
-      threshold: options.threshold || 0,
-    });
+    );
 
     const currentRef = ref.current;
     if (currentRef) {
@@ -31,19 +41,26 @@ const useInView = (options = {}) => {
   return [ref, inView];
 };
 
-const CounterAnimation = ({ end, duration = 2000, label }) => {
+interface CounterAnimationProps {
+  end: number;
+  duration?: number;
+  label: string;
+}
+
+const CounterAnimation: React.FC<CounterAnimationProps> = ({
+  end,
+  duration = 2000,
+  label,
+}) => {
   const [count, setCount] = useState(0);
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   useEffect(() => {
     if (inView) {
-      let startTime;
-      let animationFrame;
+      let startTime: number | undefined;
+      let animationFrame: number;
 
-      const animate = (currentTime) => {
+      const animate = (currentTime: number) => {
         if (!startTime) startTime = currentTime;
         const progress = (currentTime - startTime) / duration;
 
@@ -58,9 +75,7 @@ const CounterAnimation = ({ end, duration = 2000, label }) => {
       animationFrame = requestAnimationFrame(animate);
 
       return () => {
-        if (animationFrame) {
-          cancelAnimationFrame(animationFrame);
-        }
+        cancelAnimationFrame(animationFrame);
       };
     }
   }, [end, duration, inView]);
@@ -76,59 +91,44 @@ const CounterAnimation = ({ end, duration = 2000, label }) => {
   );
 };
 
-const AboutCompany = () => {
+const AboutCompany: React.FC = () => {
   return (
-    <div className="bg-[#161616]  flex items-center">
+    <div className="bg-[#161616] flex items-center">
       <div className="container mx-auto px-4 py-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-  {/* Image Column - Reordered for mobile */}
-  <div className="relative order-2 md:order-1">
-    <div className="relative">
-      {/* Border Corners */}
-      <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-[#9FE800]" />
-      <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-[#9FE800]" />
-      
-      <img 
-        src={aiimage}
-        alt="Professional working"
-        className="w-full rounded-lg"
-        data-aos="fade-up"
-     data-aos-duration="3000"
-      />
-    </div>
-  </div>
-
-  {/* Content Column - Reordered for mobile */}
-  <div className="space-y-8 order-1 md:order-2">
-    <div>
-      <span className="text-[#9FE800] bg-[#9FE800]/10 px-4 py-2 rounded-full text-sm">
-        ABOUT COMPANY
-      </span>
-    </div>
-
-    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-      We Create Impactful
-      <span className="block italic text-gray-300">Digital Experiences</span>
-    </h2>
-
-    <div className="grid grid-cols-2 gap-8">
-      <CounterAnimation 
-        end={25} 
-        duration={2000}
-        label="Completed projects"
-      />
-      <CounterAnimation 
-        end={1} 
-        duration={1500}
-        label="Brands Trust Us"
-      />
-    </div>
-
-    <p className="text-gray-400 text-lg">
-      Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X.
-    </p>
-  </div>
-</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="relative order-2 md:order-1">
+            <div className="relative">
+              <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-[#9FE800]" />
+              <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-[#9FE800]" />
+              <img
+                src={aiimage}
+                alt="Professional working"
+                className="w-full rounded-lg"
+                data-aos="fade-up"
+                data-aos-duration="3000"
+              />
+            </div>
+          </div>
+          <div className="space-y-8 order-1 md:order-2">
+            <div>
+              <span className="text-[#9FE800] bg-[#9FE800]/10 px-4 py-2 rounded-full text-sm">
+                ABOUT COMPANY
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              We Create Impactful
+              <span className="block italic text-gray-300">Digital Experiences</span>
+            </h2>
+            <div className="grid grid-cols-2 gap-8">
+              <CounterAnimation end={25} duration={2000} label="Completed projects" />
+              <CounterAnimation end={1} duration={1500} label="Brands Trust Us" />
+            </div>
+            <p className="text-gray-400 text-lg">
+              Bring to the table win-win survival strategies to ensure proactive domination.
+              At the end of the day, going forward, a new normal that has evolved from generation X.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

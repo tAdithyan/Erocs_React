@@ -86,9 +86,9 @@ function HoverCard({ member }: { member: TeamMember }) {
   };
   
 
-  const handleMouseLeave = () => {
-    setRotate({ x: 0, y: 0 }); // Reset rotation on mouse leave
-  };
+  // const handleMouseLeave = () => {
+  //   setRotate({ x: 0, y: 0 }); // Reset rotation on mouse leave
+  // };
 
   return (
     <div

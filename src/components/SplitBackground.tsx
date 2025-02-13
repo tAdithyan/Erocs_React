@@ -1,4 +1,3 @@
-import React from 'react';
 import bgimg from '../assets/robot-working-office-instead-humans_23-2150911957.avif'
 const SplitBackground = () => {
   return (

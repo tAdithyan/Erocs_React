@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  {  useState } from 'react';
 import { Plus } from 'lucide-react';
 import { GoArrowUpRight } from 'react-icons/go';
 
@@ -60,9 +60,9 @@ const servicesData = [
 const ServicesSection = () => {
   const [expandedSection, setExpandedSection] = useState('02');
 
-  const toggleSection = (id) => {
-    setExpandedSection(expandedSection === id ? null : id);
-  };
+  const toggleSection = (id: string) => {
+    setExpandedSection(expandedSection == id ? '' : id);
+  }
 
   return (
     <div className="bg-[#161616] text-white p-8 min-h-screen items-center justify-center flex">
