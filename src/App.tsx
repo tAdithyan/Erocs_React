@@ -1,15 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import Homepage from "./components/Homepage";
-import MovingBanner from "./components/MovingBanner";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
-import About from "./components/About";
-import ServicesSection from "./components/Service";
-import Portfolio from "./components/Portfolio";
-import TeamSection from "./components/Teamsection";
-import TestimonialCarousel from "./components/TestimonialCarousel";
-import ContactSection from "./components/ContactSection";
+import Mainpage from "./components/Mainpage";
+import Loading from "./components/Loading";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -20,56 +14,26 @@ const App: React.FC = () => {
     });
   }, []);
 
+  const [isLoading, setIsLoading] = useState(true);
 
   
+  useEffect(() => {
+    // Simulate page load time
+    const timer = setTimeout(() => {
+      setIsLoading(false); // Set loading to false after 2 seconds
+    }, 2000); // Adjust the time as needed
+
+    return () => clearTimeout(timer); // Clean up the timer if the component is unmounted
+  }, []);
 
   return (
-    <>
-      {/* <Navbar/> */}
-      <Homepage />
-      <div className="w-full">
-        <style>{`
-          @keyframes marquee {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
+    <div>
 
-          .animate-marquee {
-            animation: marquee 20s linear infinite;
-          }
+      {isLoading ? <Loading/> : <Mainpage/>}
 
-          .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-          }
 
-          @keyframes pulse {
-            0%,
-            100% {
-              opacity: 1;
-            }
-            50% {
-              opacity: 0.5;
-            }
-          }
-        `}</style>
-        <MovingBanner />
-      </div>
-      <About />
-      <ServicesSection />
-      
-      <Portfolio />
+    </div>
 
-      <TeamSection />
-
-      <TestimonialCarousel/>
-      <MovingBanner />
-
-      <ContactSection />
-    </>
   );
 };
 
